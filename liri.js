@@ -5,9 +5,9 @@ require("dotenv").config();
 var Spotify = require('node-spotify-api');
 
 //stores the spotify key in a variable
-var key = require("key.js");
+var keys = require("./keys");
 
-var spotify = new Spotify(key.spotify);
+var spotify = new Spotify(keys.spotify);
 
 
 
@@ -47,7 +47,7 @@ function spotifyThisSong() {
             let spotifyArr = data.tracks.items;
             for (i = 0; i < spotifyArr.length; i++) {
                 console.log(" ");
-                console.log(`Song: ${data.tracks.items[i].name}\nArtist(s): ${data.tracks.items[i].artists[0].name}\nAlbum: ${data.tracks.items[i].album.name}\nPreview Link: ${data.tracks.items[i].external_urls.spotify}`)
+                console.log(`Song: ${data.tracks.items[i].name}\nArtist(s): ${data.tracks.items[i].artists[0].name}\nAlbum: ${data.tracks.items[i].album.name}`)
                 console.log(" ");
             }
         }
