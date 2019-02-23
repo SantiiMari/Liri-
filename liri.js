@@ -1,6 +1,6 @@
 
 //requires the dotenv/spotify program
-// require("fs")
+var fs = require("fs")
 var request = require("request");
 require("dotenv").config();
 var Spotify = require('node-spotify-api');
@@ -31,12 +31,7 @@ case "do-what-it-says":
 case "movie-this":
         movieThis();
         break;
-default: console.log 
-    + "Give Liri one of these Commands!" + "\n";
-    + "spotify-this-song 'insert song title'" + "\n";
-    + "concert-this" + "\n";
-    + "do-what-it-says" + "\n";
-    + "movie-this 'anymovie title'" + "\n";
+
 };
 
 function spotifyThisSong() {
@@ -93,4 +88,25 @@ request(queryUrl, function (error, response, body)
     console.log(queryUrlResults);
 }
 )};
+function doWhatItSays() {
+    fs.readFile('random.txt', 'utf8', function (error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            var dataArray = data.split(',');
+            var dataCommand = dataArray[0];
+            var dataInput = dataArray[1];
+            console.log(dataCommand);
+            console.log(dataInput);
+            switch (dataCommand) {
+                case "spotify-this-song":
+                    userQuery = dataInput;
+                    spotifyThisSong();
+                    break;
+                default:
+                    console.log(`Something went wrong!`)
+            }
+        }
+    })
+}
     //   module.exports = spotifyThisSong;
