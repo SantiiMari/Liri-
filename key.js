@@ -9,7 +9,7 @@ exports.spotify = {
   secret: process.env.SPOTIFY_SECRET
 };
 
-var Artist = function () {
+function spotifyThisSong() {
   this.findArtist = function (show) {
     // The following URL can be used to search the TV Maze API for a given show
     var URL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp" + term;
@@ -26,16 +26,7 @@ var Artist = function () {
         });
       ;},
       )};
-      // },
-      //   this.findActor = function (show) {
-      //     var URL = "http://api.tvmaze.com/search/people?q=" + actor;
-      //     axios({
-      //       method: 'get',
-      //       url: URL,
-      //     })
-      //       .then(function (response) {
-      //         console.log(response.data.name);
-      //       })
-      //   };
+      }
+        
       
-    module.exports = TV;
+    module.exports = spotifyThisSong;
