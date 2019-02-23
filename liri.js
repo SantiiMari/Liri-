@@ -42,7 +42,6 @@ default: console.log
 function spotifyThisSong() {
     if (!input) { input = "the sign" };
     spotify.search({ type: "track", query: input, limit: 1 },
-      // The following URL can be used to search the TV Maze API for a given show
       function (err, data) {
         if (err) { return console.log('Error occurred: ' + err); } else {
             let spotifyArr = data.tracks.items;
@@ -56,6 +55,8 @@ function spotifyThisSong() {
   }
 
   function bandsInTown() {
+      //key
+      // The following URL can be used to search the bands api
     var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
     request(queryUrl, function (error, response, body)
      { if (!error) {
@@ -74,4 +75,22 @@ function spotifyThisSong() {
 });
   };
 
+
+  function movieThis() {
+      //key
+      // The following URL can be used to search the spotify api
+var queryUrl = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=c321888e";
+request(queryUrl, function (error, response, body)
+{
+    if (!input) {input =" Mr. Nobody"}; 
+    var MovieData = JSON.parse(body);
+    var queryUrlResults =
+    "Title: " + MovieData.Title + "\n" +
+    "Year Released: " + MovieData.Year + "\n" +
+    "IMDB Rating: " + MovieData.Ratings[0].Value + "\n" +
+    "Plot: " + MovieData.Plot + "\n" +
+    "Actors / Actresses: " + MovieData.Actors
+    console.log(queryUrlResults);
+}
+)};
     //   module.exports = spotifyThisSong;
