@@ -5,16 +5,11 @@ require("dotenv").config();
 var Spotify = require('node-spotify-api');
 
 //stores the spotify key in a variable
-var keys = require("./key.js");
+var keys = require("key.js");
 
 var spotify = new Spotify(keys.spotify);
-var artist = new Artist();
 
 
-
-
-
-// var Spotify = require('node-spotify-api');
 
 
 //grabs the user input 
@@ -43,3 +38,21 @@ default: console.log
     + "movie-this 'anymovie title'" + "\n";
 };
 
+function spotifyThisSong() {
+    if (!userQuery) { userQuery = "the sign" };
+    spotify.search({ type: "track", query: input, limit: 1 },
+      // The following URL can be used to search the TV Maze API for a given show
+      function (err, data) {
+        if (err) { return console.log('Error occurred: ' + err); } else {
+            let spotifyArr = data.tracks.items;
+            for (i = 0; i < spotifyArr.length; i++) {
+                console.log(" ");
+                console.log(`Song: ${data.tracks.items[i].name}\nArtist(s): ${data.tracks.items[i].artists[0].name}\nAlbum: ${data.tracks.items[i].album.name}\nPreview Link: ${data.tracks.items[i].external_urls.spotify}`)
+                console.log(" ");
+            }
+        }
+    })
+  }
+  
+  
+      module.exports = spotifyThisSong;
