@@ -1,6 +1,7 @@
 
 //requires the dotenv/spotify program
 // require("fs")
+var request = require("request");
 require("dotenv").config();
 var Spotify = require('node-spotify-api');
 
@@ -53,6 +54,24 @@ function spotifyThisSong() {
         }
     })
   }
-  
-  
-      module.exports = spotifyThisSong;
+
+  function bandsInTown() {
+    var queryUrl = "https://rest.bandsintown.com/artists/" + input + "/events?app_id=codingbootcamp"
+    request(queryUrl, function (error, response, body)
+     { if (!error) {
+        var myBandData = JSON.parse(body);
+        var bandEvent = myBandData[0];
+        var date = bandEvent.datetime
+        var queryUrlResults =
+            "city: " + bandEvent.venue.city + "\n" +
+            "Venue: " + bandEvent.venue.name + "\n" +
+            "Date: " + date;
+        return console.log("The next concert is..." + "\n" + queryUrlResults);
+    } else {
+        console.log("error: " + error);
+        return;
+    };
+});
+  };
+
+    //   module.exports = spotifyThisSong;
