@@ -5,9 +5,9 @@ require("dotenv").config();
 var Spotify = require('node-spotify-api');
 
 //stores the spotify key in a variable
-var keys = require("key.js");
+// var key = require("key.js");
 
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(key.spotify);
 
 
 
@@ -39,8 +39,8 @@ default: console.log
 };
 
 function spotifyThisSong() {
-    if (!userQuery) { userQuery = "the sign" };
-    spotify.search({ type: "track", query: input, limit: 1 },
+    if (!input) { input = "the sign" };
+    spotify.search({ type: "track", query: "californication", limit: 1 },
       // The following URL can be used to search the TV Maze API for a given show
       function (err, data) {
         if (err) { return console.log('Error occurred: ' + err); } else {
