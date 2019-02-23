@@ -1,6 +1,3 @@
-var axios = require("axios");
-var fs = require("fs");
-
 console.log('this is loaded');
 
 exports.spotify = {
