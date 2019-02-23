@@ -1,6 +1,6 @@
 
 //requires the dotenv/spotify program
-
+// require("fs")
 require("dotenv").config();
 var Spotify = require('node-spotify-api');
 
@@ -40,7 +40,7 @@ default: console.log
 
 function spotifyThisSong() {
     if (!input) { input = "the sign" };
-    spotify.search({ type: "track", query: "californication", limit: 1 },
+    spotify.search({ type: "track", query: input, limit: 1 },
       // The following URL can be used to search the TV Maze API for a given show
       function (err, data) {
         if (err) { return console.log('Error occurred: ' + err); } else {
